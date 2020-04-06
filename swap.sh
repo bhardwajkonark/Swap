@@ -3,6 +3,9 @@ disk_space=$(df -kh . | awk 'FNR==2{print $4}' | grep -oE '[0-9]+([.][0-9]+)?' |
 swap_size=$1
 swap_path=$2
 
+echo "
+"
+
 check_user() {
 
     if [ "$(id -u)" -ne 0 ]; then
@@ -119,6 +122,9 @@ Entering Interactive mode.
         while [ -z ${swap_size} ]; do
             read -p "Please enter the swap size : " swap_size
         done
+        read -p "Please enter the swap path [ Default = /swapfile ]" swap_path
+        swap_path=${swap_path:-"/swapfile"}
+
         is_num $swap_size
 
         create_swap $swap_size $swap_path
