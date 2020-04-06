@@ -45,7 +45,7 @@ create_swap() {
     if [ ! -z $swap_size ]; then
         swap_path
         if [ $disk_space -gt $swap_size ]; then
-            sudo fallocate -l ${swap_size}G /swapfile
+            sudo fallocate -l ${swap_size}G $swap_path
             sudo chmod 600 $swap_path
             sudo mkswap $swap_path
             sudo swapon $swap_path
