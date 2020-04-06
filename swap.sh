@@ -91,7 +91,6 @@ read -p "Please enter the swap size :" swap_size_interactive
 
 
     fi
-    fi
 
 }
 
