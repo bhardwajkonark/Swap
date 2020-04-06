@@ -69,6 +69,28 @@ Usage: $0 <size of swap in GB> <Swap file Path (Optional)>
 
 Example : $0 4 /swapfile
 "
+
+read -p "Please enter the swap size :" swap_size_interactive 
+
+ if [ $disk_space -gt $swap_size ]; then
+            sudo fallocate -l ${swap_size}G /swapfile
+            sudo chmod 600 $swap_path
+            sudo mkswap $swap_path
+            sudo swapon $swap_path
+            echo $swap_path
+            echo "${swap_size}G swap file succesfully created at $swap_path"
+
+            persist_swap
+
+        else
+
+            echo " Not enough Disk space"
+            echo " Disk Space : ${disk_space}G "
+            exit
+        fi
+
+
+    fi
     fi
 
 }
